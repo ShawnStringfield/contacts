@@ -7,7 +7,7 @@ const app = express();
 
 const contactsApi = () => {
 	return {
-		contacts: _.times(96, function() {
+		contacts: _.times(20, function() {
 			return {
 				uid: faker.random.uuid(),
 				avatar: faker.internet.avatar(),
@@ -19,6 +19,7 @@ const contactsApi = () => {
 				},
 				address: {
 					street: faker.address.streetAddress(),
+					city: faker.address.city(),
 					state: faker.address.state(),
 					zip: faker.address.zipCode()
 				},

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Match, Miss, Link } from 'react-router';
-import resource from './resources/contact_api';
-// import Contacts from './components/Contacts';
-// import Profile from './components/ContactProfile';
-import Home from './components/Home';
-import About from './components/About';
-import NoMatch from './components/NoMatch';
+import { BrowserRouter as Router, Match } from 'react-router';
+import _ from 'lodash';
 
+import resource from './resources/contact_api';
+import Contacts from './components/Contacts';
+import Profile from './components/ContactProfile';
 import '../sass/styles.scss';
+
+/* Can Programmatically Set Routes
+const ContactComp = ({component:Component, contacts, ...props}) => (
+	<Match {...props} render={(props) => (
+		<Component {...props} contacts={contacts}/>
+	)}/>
+)
+*/
 
 class App extends Component{
 	constructor() {
@@ -23,20 +29,22 @@ class App extends Component{
 		});
 	}
 
+	handleContactListRoute() {
+		return <Contacts contacts={this.state.contacts}/>
+	}
+
+	handleContactRoute(props) {
+		const p = _.find(this.state.contacts, {uid: props.params.uid});
+		return <Profile contact={p} {...props} />
+	}
+
 	render() {
+		console.log( this.state.contacts );
 		return(
 			<Router>
-				<div className="container">
-					<h1>Contacts</h1>
-					<ul>
-						<li><Link to="/">Home</Link></li>
-						<li><Link to="/about">About</Link></li>
-						<li><Link to="/sdfsdf">Miss</Link></li>
-					</ul>
-
-					<Match exactly pattern="/" component={Home}/>
-					<Match pattern="/about" component={About}/>
-					<Miss component={NoMatch}/>
+				<div>
+					<Match exactly pattern="/" render={this.handleContactListRoute.bind(this)}/>
+					<Match pattern="/:uid" render={this.handleContactRoute.bind(this)}/>
 				</div>
 			</Router>
 		);

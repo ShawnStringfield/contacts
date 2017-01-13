@@ -1,8 +1,7 @@
 import React from 'react';
 
-const NoMatch = function({location}) {
-	console.log( location );
-	return (<h2>NoMatch</h2>);
-};
+const NoMatch = () => (
+	<h2>Sorry,there is no match.</h2>
+);
 
 export default NoMatch;
