@@ -1,0 +1,19 @@
+.toolbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 15px 0;
+	background-color: white;
+	border-bottom: 1px solid #EEE;
+	opacity: .9;
+
+	a {
+		color: #0081F8;
+		display: block;
+		margin: 0 auto;
+		padding: $padding-width;
+		&:hover {
+			color: lighten(#647382, 40);
+		}
+	}
+}

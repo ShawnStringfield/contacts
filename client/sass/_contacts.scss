@@ -1,0 +1,73 @@
+.contact {
+	padding: 15px 0;
+	border-bottom: 1px solid lighten(#EEE, 3%);
+	line-height: 18px;
+
+	a {
+		color: #1b2733;
+		&:hover {
+			color: blue;
+		}
+	}
+
+	div {
+		padding: 2px;
+	}
+}
+
+.contact-profile {
+	line-height: 22px;
+}
+
+.avatar {
+	border-radius: 50%;
+}
+
+.profile-header {
+
+	@extend .container;
+	margin: 75px 0 25px;
+	padding: $padding-width;
+	display: flex;
+	align-items: center;
+
+	.profile-avatar,
+	.profile-name {
+		width: 50%;
+		padding: 0;
+		line-height: 16px;
+	}
+
+	.profile-name {
+		div:first-child {
+			font-size: 15px;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+		div:last-child {
+			color: #647382;
+			font-size: 13px;
+		}
+	}
+
+	.profile-avatar {
+		display: flex;
+		justify-content: flex-end;
+		.avatar {
+			width: 40px;
+			height: 40px;
+		}
+	}
+}
+
+// Refactor this one
+.block {
+	@extend .container;
+	width: inherit;
+}
+
+.label {
+	color: $blue-gray;
+	text-transform: uppercase;
+	font-size: 12px;
+}

@@ -1,23 +1,17 @@
 body {
-	color: #1b2733;
+	color: darken($body-text-color, 3);
 	font-weight: 100;
+	line-height: 24px;
 }
 
-.container {
-	width: 80%;
-	margin: 0 auto;
-}
-
-.contact {
-	padding: 15px;
-	border-bottom: 1px solid lighten(#EEE, 3%);
-
-	div {
-		padding: 2px;
+a {
+	text-decoration: none;
+	&:hover {
+		color: blue;
 	}
-
 }
 
-.muted {
-	color: #647382;
+hr {
+	border: none;
+	border-bottom: 1px solid #EEE;
 }
