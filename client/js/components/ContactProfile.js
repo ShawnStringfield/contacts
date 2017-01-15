@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+import Map from './Map';
+
 class ContactProfile extends React.Component{
 
 	static propTypes = {
@@ -32,8 +34,13 @@ class ContactProfile extends React.Component{
 			notes
 		} = this.props.contact;
 
+		const lat = '38.93283';
+		const long = '-76.97831599999999';
+
 		return(
+
 			<div className="contact-profile">
+
 				<div className="toolbar">
 					<Link to="/">Contacts</Link>
 				</div>
@@ -47,6 +54,8 @@ class ContactProfile extends React.Component{
 						<img className="avatar" src={avatar} alt=""/>
 					</div>
 				</div>
+
+				<Map lat={lat} long={long} zoom="13" width="700" height="150"/>
 
 				<div className="block">
 					<div className="group">

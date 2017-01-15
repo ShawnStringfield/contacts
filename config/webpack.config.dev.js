@@ -51,7 +51,11 @@ const config = {
     ],
 
 		loaders: [
-			// "file" loader for svg
+			// "file" loaders for svg and images
+			{
+				test: /\.(jpe?g|png|gif)$/i,
+				loader: 'file?name=[name].[ext]'
+			},
 			{
 				test: /\.svg$/,
 				loader: 'file',

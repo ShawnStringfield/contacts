@@ -33,7 +33,9 @@ const contactsApi = () => {
 					street: faker.address.streetAddress(),
 					city: faker.address.city(),
 					state: faker.address.state(),
-					zip: faker.address.zipCode()
+					zip: faker.address.zipCode(),
+					lat: faker.address.latitude(),
+					long: faker.address.longitude()
 				},
 				company: {
 					name: faker.company.companyName(),
