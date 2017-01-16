@@ -1,6 +1,7 @@
 import browserSync from 'browser-sync';
 import historyApiFallback from 'connect-history-api-fallback';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import config from '../config/webpack.config.dev';
 
@@ -19,6 +20,7 @@ browserSync({
 		target: 'http://localhost:4000',
 		middleware: [
 			historyApiFallback(),
+			webpackHotMiddleware(compiler),
 			webpackDevMiddleware(compiler, {
 				publicPath: config.output.publicPath,
 				noInfo: false,

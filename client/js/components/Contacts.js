@@ -6,14 +6,19 @@ const getFullName = function(name) {
 };
 
 class Contacts extends Component{
+
 	static propTypes = {
 			contacts: React.PropTypes.array
+	}
+
+	constructor(props) {
+		super(props);
 	}
 
 	getAllContacts(contact) {
 		return(
 			<div className="contact" key={contact.uid}>
-				<Link to={`/${contact.uid}`}>
+				<Link to={`/contacts/${contact.uid}`}>
 					{getFullName(contact.name)}
 				</Link>
 			</div>

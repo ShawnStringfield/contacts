@@ -7,17 +7,10 @@ import Contacts from './components/Contacts';
 import Profile from './components/ContactProfile';
 import '../sass/styles.scss';
 
-/* Can Programmatically Set Routes
-const ContactComp = ({component:Component, contacts, ...props}) => (
-	<Match {...props} render={(props) => (
-		<Component {...props} contacts={contacts}/>
-	)}/>
-)
-*/
-
 class App extends Component{
-	constructor() {
-		super();
+
+	constructor(props) {
+		super(props);
 		this.state = {
 			contacts: []
 		};
@@ -25,6 +18,7 @@ class App extends Component{
 
 	componentDidMount() {
 		contacts.getAllContacts().then(response => {
+			localStorage.setItem('contacts', JSON.stringify(response));
 			this.setState({contacts: response});
 		});
 	}
@@ -33,9 +27,10 @@ class App extends Component{
 		return <Contacts contacts={this.state.contacts}/>;
 	}
 
-	handleContactRoute(props) {
-		const person = _.find(this.state.contacts, {uid: props.params.uid});
-		return <Profile contact={person} {...props} />;
+	handleContactRoute({...props}) {
+		const contacts = JSON.parse(localStorage.getItem('contacts'));
+		const contact = _.find(contacts, {uid: props.params.uid});
+		return <Profile contact={contact} {...props}/>;
 	}
 
 	render() {
@@ -43,7 +38,7 @@ class App extends Component{
 			<Router>
 				<div>
 					<Match exactly pattern="/" render={this.handleContactListRoute.bind(this)}/>
-					<Match pattern="/:uid" render={this.handleContactRoute.bind(this)}/>
+					<Match pattern="/contacts/:uid" render={this.handleContactRoute.bind(this)}/>
 				</div>
 			</Router>
 		);

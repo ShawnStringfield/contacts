@@ -9,6 +9,10 @@ class ContactProfile extends React.Component{
 		contact: React.PropTypes.object
 	}
 
+	constructor(props) {
+		super(props);
+	}
+
 	getNotes(note) {
 		return(
 			<div className="note" key={note.time}>
