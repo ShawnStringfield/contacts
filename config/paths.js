@@ -1,6 +1,6 @@
 const path = require('path');
 
-export default {
+module.exports = {
 	appBuild: path.resolve('public'),
 	appJS: path.resolve('client/index.js'),
 	appHTML: path.resolve('client/index.html'),
