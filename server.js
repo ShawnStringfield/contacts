@@ -75,5 +75,5 @@ app.get('/api/contacts', function(req, res) {
 });
 
 app.listen(process.env.PORT || 4000, function() {
-	console.log('Node is Running!');
+	console.log('Node is Running');
 });
