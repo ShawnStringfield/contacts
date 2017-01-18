@@ -62,7 +62,7 @@ const contactsApi = () => {
 
 const contacts = contactsApi();
 
-// app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + 'public'));
 
 app.use(cors());
 
