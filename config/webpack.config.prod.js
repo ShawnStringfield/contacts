@@ -133,4 +133,4 @@ const config = {
 	postcss: () => [autoprefixer]
 }
 
-module.exports =  config;
+module.exports = config;
