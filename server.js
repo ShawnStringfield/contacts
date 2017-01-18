@@ -67,15 +67,15 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(cors());
 
-app.get('/', function(req, res) {
-	res.send('hi');
-	// res.sendFile(path.join(__dirname, '/public', 'index.html'))
-});
+// app.get('/', function(req, res) {
+// 	res.send('hi');
+// 	// res.sendFile(path.join(__dirname, '/public', 'index.html'))
+// });
 
 app.get('/api/contacts', function(req, res) {
 	res.json(contacts);
 });
 
 app.listen(process.env.PORT || 4000, function() {
-	console.log(chalk.green('Node is Running!'));
+	console.log(chalk.green('Node is Running on port ' + process.env.PORT));
 });
