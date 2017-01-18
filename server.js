@@ -68,7 +68,7 @@ app.get('/', function(req, res) {
 	res.send('Hello World! Baby');
 });
 
-app.get('/contacts', function(req, res) {
+app.get('/api/contacts', function(req, res) {
 	res.json(contacts);
 });
 
