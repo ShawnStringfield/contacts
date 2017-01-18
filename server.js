@@ -67,7 +67,7 @@ app.use(express.static(__dirname + 'public'));
 app.use(cors());
 
 app.get('/', function(req, res) {
-	res.send('Hello World! Baby');
+	res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
 app.get('/api/contacts', function(req, res) {
