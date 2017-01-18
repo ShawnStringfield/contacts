@@ -62,6 +62,8 @@ const contactsApi = () => {
 
 const contacts = contactsApi();
 
+app.use(express.static(__dirname + 'public'));
+
 app.use(cors());
 
 app.get('/', function(req, res) {
@@ -72,6 +74,6 @@ app.get('/api/contacts', function(req, res) {
 	res.json(contacts);
 });
 
-app.listen(4000, function() {
-	console.log(chalk.green('Node is Running!'));
+app.listen(process.env.PORT || 4000, function() {
+	console.log('Node is Running');
 });
