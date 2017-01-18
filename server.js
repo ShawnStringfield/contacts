@@ -68,7 +68,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors());
 
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, '/public', 'index.html'))
+	res.send('hi');
+	// res.sendFile(path.join(__dirname, '/public', 'index.html'))
 });
 
 app.get('/api/contacts', function(req, res) {
