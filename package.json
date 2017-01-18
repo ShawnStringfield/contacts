@@ -29,7 +29,8 @@
 		"webpack-md5-hash": "0.0.5",
 		"html-webpack-plugin": "^2.26.0",
 		"dotenv": "^2.0.0",
-		"autoprefixer": "^6.6.1"
+		"autoprefixer": "^6.6.1",
+		"webpack": "^1.14.0"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.18.0",
