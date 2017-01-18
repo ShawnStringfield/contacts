@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start": "npm-run-all --parallel open:client open:server",
+		"build": "babel-node scripts/build && babel-node scripts/buildServer",
 		"open:client": "babel-node scripts/start",
 		"open:server": "node server.js"
 	},
@@ -28,7 +30,9 @@
 		"html-webpack-plugin": "^2.26.0",
 		"dotenv": "^2.0.0",
 		"autoprefixer": "^6.6.1",
-		"webpack": "^1.14.0",
+		"webpack": "^1.14.0"
+	},
+	"devDependencies": {
 		"babel-cli": "^6.18.0",
 		"babel-core": "^6.21.0",
 		"babel-eslint": "^7.1.1",
@@ -54,8 +58,5 @@
 		"url-loader": "^0.5.7",
 		"webpack-dev-middleware": "^1.9.0",
 		"webpack-hot-middleware": "^2.15.0"
-	},
-	"devDependencies": {
-
 	}
 }
