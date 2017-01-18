@@ -1,8 +1,8 @@
-import webpack from 'webpack';
-import fs from 'fs-extra';
-import chalk from 'chalk';
-import config from '../config/webpack.config.prod.js';
-import paths from '../config/paths';
+const webpack = require('webpack');
+const fs = require('fs-extra');
+const chalk = require('chalk');
+const config = require('../config/webpack.config.prod.js');
+const paths = require('../config/paths');
 
 // Ensure any code reading this knows the correct environment
 // Also tells React to build in prod mode
