@@ -3,6 +3,7 @@ const cors = require('cors');
 const faker = require('faker');
 const chalk = require('chalk');
 const _ = require('lodash');
+const path = require('path');
 const app = express();
 
 const instagram = [
@@ -62,12 +63,12 @@ const contactsApi = () => {
 
 const contacts = contactsApi();
 
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(cors());
 
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, 'public', 'index.html'))
+	res.sendFile(path.join(__dirname, '/public', 'index.html'))
 });
 
 app.get('/api/contacts', function(req, res) {
@@ -75,5 +76,5 @@ app.get('/api/contacts', function(req, res) {
 });
 
 app.listen(process.env.PORT || 4000, function() {
-	console.log('Node is Running');
+	console.log(chalk.green('Node is Running!'));
 });
