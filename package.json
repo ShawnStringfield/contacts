@@ -4,8 +4,6 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "npm-run-all --parallel open:client open:server",
-		"build": "babel-node scripts/build && babel-node scripts/buildServer",
 		"open:client": "babel-node scripts/start",
 		"open:server": "node server.js"
 	},
