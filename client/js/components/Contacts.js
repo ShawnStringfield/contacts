@@ -28,6 +28,7 @@ class Contacts extends Component{
 	render() {
 		return (
 			<div className="contacts container">
+				<h2>Contacts</h2>
 				{this.props.contacts.map(this.getAllContacts)}
 			</div>
 		);
