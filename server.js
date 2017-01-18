@@ -13,6 +13,10 @@ app.get('/api/contacts', function(req, res) {
 	res.json(contacts);
 });
 
+app.get('*', function(req, res) {
+	res.sendFile( __dirname + '/public/index.html');
+})
+
 app.listen(process.env.PORT || 4000, function() {
 	console.log(chalk.green('Node is Running on port ' + process.env.PORT));
 });
