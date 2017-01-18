@@ -22,6 +22,6 @@ webpack(config).run((error, stats) => {
 		return 1;
 	}
 
-	console.log( chalk.green(stats) );;
+	console.log( chalk.green(stats) );
 	return 0;
 });
