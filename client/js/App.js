@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Match } from 'react-router';
 import _ from 'lodash';
 
-import contacts from './resources/contact_api';
+import contacts_api from './resources/contacts';
 import Contacts from './components/Contacts';
 import Profile from './components/ContactProfile';
 import '../sass/styles.scss';
@@ -17,10 +17,8 @@ class App extends Component{
 	}
 
 	componentDidMount() {
-		contacts.getAllContacts().then(response => {
-			localStorage.setItem('contacts', JSON.stringify(response));
-			this.setState({contacts: response});
-		});
+		localStorage.setItem('contacts', JSON.stringify(contacts_api));
+		this.setState({contacts: JSON.parse(localStorage.getItem('contacts'))});
 	}
 
 	handleContactListRoute() {
@@ -38,7 +36,7 @@ class App extends Component{
 			<Router>
 				<div>
 					<Match exactly pattern="/" render={this.handleContactListRoute.bind(this)}/>
-					<Match pattern="/contacts/:uid" render={this.handleContactRoute.bind(this)}/>
+					<Match pattern="/:uid" render={this.handleContactRoute.bind(this)}/>
 				</div>
 			</Router>
 		);

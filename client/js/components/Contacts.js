@@ -17,8 +17,8 @@ class Contacts extends Component{
 
 	getAllContacts(contact) {
 		return(
-			<div className="contact" key={contact.uid}>
-				<Link to={`/contacts/${contact.uid}`}>
+			<div className="contact" key={contact.name.first}>
+				<Link to={`/${contact.uid}`}>
 					{getFullName(contact.name)}
 				</Link>
 			</div>

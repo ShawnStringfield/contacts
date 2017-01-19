@@ -6,11 +6,15 @@ import Map from './Map';
 class ContactProfile extends React.Component{
 
 	static propTypes = {
-		contact: React.PropTypes.object
+		contact: React.PropTypes.object,
+		params: React.PropTypes.object
 	}
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			contact: {}
+		};
 	}
 
 	getNotes(note) {
