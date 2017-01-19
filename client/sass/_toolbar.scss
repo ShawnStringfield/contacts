@@ -11,7 +11,7 @@
 		color: #0081F8;
 		display: block;
 		margin: 0 auto;
-		padding: $padding-width;
+		padding: $gutter;
 		&:hover {
 			color: lighten(#647382, 40);
 		}

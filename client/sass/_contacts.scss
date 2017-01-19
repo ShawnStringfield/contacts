@@ -27,7 +27,7 @@
 
 	@extend .container;
 	margin: 75px 0 25px;
-	padding: $padding-width;
+	padding: $gutter;
 	display: flex;
 	align-items: center;
 
@@ -58,6 +58,12 @@
 			height: 40px;
 		}
 	}
+}
+
+.profile-employer {
+	padding: 10px $padding 10px;
+	background-color: lighten($blue-gray, 30);
+	h3 {margin: 0;}
 }
 
 // Refactor this one

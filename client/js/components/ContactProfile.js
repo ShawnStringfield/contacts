@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 import Map from './Map';
+import Avatar from './Avatar';
 
 class ContactProfile extends React.Component{
 
@@ -12,9 +13,6 @@ class ContactProfile extends React.Component{
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			contact: {}
-		};
 	}
 
 	getNotes(note) {
@@ -42,9 +40,6 @@ class ContactProfile extends React.Component{
 			notes
 		} = this.props.contact;
 
-		const lat = '38.93283';
-		const long = '-76.97831599999999';
-
 		return(
 
 			<div className="contact-profile">
@@ -58,12 +53,15 @@ class ContactProfile extends React.Component{
 						<div>{name.first} {name.last}</div>
 						<div>{job_title}</div>
 					</div>
-					<div className="profile-avatar">
-						<img className="avatar" src={avatar} alt=""/>
-					</div>
+					<Avatar url={avatar}/>
 				</div>
 
-				<Map lat={lat} long={long} zoom="13" width="700" height="150"/>
+				<Map lat={address.lat} long={address.long} zoom="13" width="700" height="150"/>
+
+				<div className="profile-employer">
+					<h3>Works For</h3>
+					<div>{company.name}</div>
+				</div>
 
 				<div className="block">
 					<div className="group">
@@ -82,17 +80,6 @@ class ContactProfile extends React.Component{
 							<div>{address.street}</div>
 							<div>{address.city} {address.state} {address.zip}</div>
 						</div>
-					</div>
-
-					<hr/>
-
-					<div className="group">
-						<h3>Employment</h3>
-						<div>{company.name}</div>
-						<div>{company.phone}</div>
-						<div>{company.website}</div>
-						<div>{company.address.street}</div>
-						<div>{company.address.city} {company.address.state} {company.address.zip}</div>
 					</div>
 
 					<hr/>
