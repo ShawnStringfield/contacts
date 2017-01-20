@@ -6,8 +6,9 @@ import storage from './helpers/storage';
 import contacts_api from './resources/contacts';
 import Contacts from './components/Contacts';
 import Profile from './components/person/ContactProfile';
-import '../sass/styles.scss';
+import PersonForm from './components/person/PersonForm';
 
+import '../sass/styles.scss';
 
 class App extends Component{
 
@@ -16,11 +17,34 @@ class App extends Component{
 		this.state = {
 			contacts: []
 		};
+
+		this.handleContactListRoute = this.handleContactListRoute.bind(this);
+		this.handleContactRoute = this.handleContactRoute.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	componentDidMount() {
-		storage.set('contacts', contacts_api);
+		if (!storage.get('contacts')) {
+			storage.set('contacts', contacts_api);
+		}
 		this.setState({contacts: storage.get('contacts')});
+	}
+
+	onSubmit(contact) {
+		const last_contact = _.last(this.state.contacts);
+
+		const person = {
+			email: contact.email,
+			uid: Number(last_contact.uid) + 1 + '',
+			name: {
+				first: contact.first_name,
+				last: contact.last_name
+			}
+		};
+
+		const contacts = [...this.state.contacts, person];
+		storage.set('contacts', contacts);
+		this.setState({contacts});
 	}
 
 	handleContactListRoute() {
@@ -30,15 +54,28 @@ class App extends Component{
 	handleContactRoute({...props}) {
 		const contacts = storage.get('contacts');
 		const contact = _.find(contacts, {uid: props.params.uid});
-		return <Profile contact={contact} {...props}/>;
+		return(
+			<Profile
+				name={`${contact.name.first} ${contact.name.last}` || null}
+				job_title={contact.name.job_title || null}
+				email={contact.email || null}
+				phone={contact.phone || null}
+				avatar_url={contact.avatar || null}
+				address={contact.address || {}}
+				company={contact.company || {}}
+				notes={contact.notes || []}
+				{...props}
+			/>
+		);
 	}
 
 	render() {
 		return(
 			<Router>
 				<div>
-					<Match exactly pattern="/" render={this.handleContactListRoute.bind(this)}/>
-					<Match pattern="/:uid" render={this.handleContactRoute.bind(this)}/>
+					<Match exactly pattern="/" render={this.handleContactListRoute}/>
+					<Match pattern="/new-contact" render={() => <PersonForm onSubmit={this.onSubmit}/>}/>
+					<Match pattern="/contact/:uid" render={this.handleContactRoute}/>
 				</div>
 			</Router>
 		);

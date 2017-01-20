@@ -17,22 +17,37 @@ class Contacts extends Component{
 
 	getAllContacts(contact) {
 		return(
-			<div className="contact" key={contact.name.first}>
-				<Link to={`/${contact.uid}`}>
+			<div className="contact" key={contact.uid}>
+				<Link to={`/contact/${contact.uid}`}>
 					{getFullName(contact.name)}
 				</Link>
 			</div>
 		);
 	}
 
+	showContactForm() {
+		this.context.router.transitionTo('new-contact');
+	}
+
 	render() {
 		return (
-			<div className="contacts container">
-				<h2>Contacts</h2>
-				{this.props.contacts.map(this.getAllContacts)}
+			<div>
+				<div className="toolbar toolbar-home">
+					<div className="container">
+						<h3>Contacts</h3>
+						<div className="add" onClick={this.showContactForm.bind(this)}/>
+					</div>
+				</div>
+				<div className="contacts container">
+					{this.props.contacts.map(this.getAllContacts)}
+				</div>
 			</div>
 		);
 	}
 }
+
+Contacts.contextTypes = {
+	router: React.PropTypes.object
+};
 
 export default Contacts;

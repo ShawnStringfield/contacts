@@ -3,7 +3,9 @@ $light-gray: #B9B9B9;
 $medium-gray: #9298A0;
 $dark-gray: #757575;
 $blue-gray: #93A6B6;
+$blue-gray-light: lighten($blue-gray, 30);
 $body-text-color: $dark-gray;
+$button-action-color: #0080FC;
 
 // Spacing
 $container-width: 90%;

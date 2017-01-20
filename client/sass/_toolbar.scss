@@ -17,3 +17,30 @@
 		}
 	}
 }
+
+.toolbar-home {
+	h3 {
+		margin: 0;
+		float: left;
+	}
+
+	.add {
+		font-size: 20px;
+		font-weight: bold;
+		float: right;
+		border-radius: 50%;
+		background-color: $blue-gray-light;
+		border: 1px solid darken($blue-gray-light, 5);
+		display: flex;
+		align-items: center;
+		line-height: 20px;
+
+		&:before {
+			content: '+';
+			width: 25px;
+			height: 25px;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}

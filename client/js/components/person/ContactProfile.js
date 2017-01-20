@@ -28,20 +28,7 @@ class ContactProfile extends React.Component{
 	}
 
 	render() {
-
-		const {
-			name,
-			address,
-			company,
-			email,
-			avatar,
-			phone,
-			job_title,
-			notes
-		} = this.props.contact;
-
 		return(
-
 			<div className="contact-profile">
 
 				<div className="toolbar">
@@ -50,35 +37,35 @@ class ContactProfile extends React.Component{
 
 				<div className="profile-header">
 					<div className="profile-name">
-						<div>{name.first} {name.last}</div>
-						<div>{job_title}</div>
+						<div>{this.props.name}</div>
+						<div>{this.props.job_title}</div>
 					</div>
-					<Avatar url={avatar}/>
+					<Avatar url={this.props.avatar_url}/>
 				</div>
 
-				<Map lat={address.lat} long={address.long} zoom="13" width="700" height="150"/>
+				<Map lat={this.props.address.lat} long={this.props.address.long} zoom="13" width="700" height="150"/>
 
 				<div className="profile-employer">
 					<h3>Works For</h3>
-					<div>{company.name}</div>
+					<div>{this.props.company.name}</div>
 				</div>
 
 				<div className="block">
 					<div className="group">
 						<div className="label">Work</div>
-						<div className="phone">{phone}</div>
+						<div className="phone">{this.props.phone}</div>
 					</div>
 
 					<div className="group">
 						<div className="label">Email</div>
-						<div className="email">{email}</div>
+						<div className="email">{this.props.email}</div>
 					</div>
 
 					<div className="group">
 						<div className="label">Address</div>
 						<div className="address">
-							<div>{address.street}</div>
-							<div>{address.city} {address.state} {address.zip}</div>
+							<div>{this.props.address.street}</div>
+							<div>{this.props.address.city} {this.props.address.state} {this.props.address.zip}</div>
 						</div>
 					</div>
 
@@ -86,12 +73,23 @@ class ContactProfile extends React.Component{
 
 					<div className="notes">
 						<h3>Notes</h3>
-						{notes.map(this.getNotes)}
+						{this.props.notes.map(this.getNotes)}
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
+
+ContactProfile.propTypes = {
+	name: React.PropTypes.string,
+	email: React.PropTypes.string,
+	phone: React.PropTypes.string,
+	job_title: React.PropTypes.string,
+	avatar_url: React.PropTypes.string,
+	address: React.PropTypes.object,
+	company: React.PropTypes.object,
+	notes: React.PropTypes.array
+};
 
 export default ContactProfile;
