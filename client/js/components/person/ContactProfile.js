@@ -28,6 +28,17 @@ class ContactProfile extends React.Component{
 	}
 
 	render() {
+		const {
+				name,
+				email,
+				phone,
+				job_title,
+				avatar_url,
+				address,
+				company,
+				notes
+		} = this.props;
+
 		return(
 			<div className="contact-profile">
 
@@ -37,44 +48,62 @@ class ContactProfile extends React.Component{
 
 				<div className="profile-header">
 					<div className="profile-name">
-						<div>{this.props.name}</div>
-						<div>{this.props.job_title}</div>
+						{name && <div>{name}</div>}
+						{job_title && <div>{job_title}</div>}
 					</div>
-					<Avatar url={this.props.avatar_url}/>
+					{avatar_url && <Avatar url={avatar_url}/>}
 				</div>
 
-				<Map lat={this.props.address.lat} long={this.props.address.long} zoom="13" width="700" height="150"/>
+				{address &&
+					<Map
+						lat={address.lat}
+						long={address.long}
+						zoom="13"
+						width="700"
+						height="150"
+					/>
+				}
 
-				<div className="profile-employer">
-					<h3>Works For</h3>
-					<div>{this.props.company.name}</div>
-				</div>
+				{company &&
+					<div className="profile-employer">
+						<h3>Works For</h3>
+						<div>{company.name}</div>
+					</div>
+				}
 
 				<div className="block">
-					<div className="group">
-						<div className="label">Work</div>
-						<div className="phone">{this.props.phone}</div>
-					</div>
-
-					<div className="group">
-						<div className="label">Email</div>
-						<div className="email">{this.props.email}</div>
-					</div>
-
-					<div className="group">
-						<div className="label">Address</div>
-						<div className="address">
-							<div>{this.props.address.street}</div>
-							<div>{this.props.address.city} {this.props.address.state} {this.props.address.zip}</div>
+					{phone &&
+						<div className="group">
+							<div className="label">Work</div>
+							<div className="phone">{phone}</div>
 						</div>
-					</div>
+					}
+
+					{email &&
+						<div className="group">
+							<div className="label">Email</div>
+							<div className="email">{email}</div>
+						</div>
+					}
+
+					{address &&
+						<div className="group">
+							<div className="label">Address</div>
+							<div className="address">
+								<div>{address.street}</div>
+								<div>{address.city} {address.state} {address.zip}</div>
+							</div>
+						</div>
+					}
 
 					<hr/>
 
-					<div className="notes">
-						<h3>Notes</h3>
-						{this.props.notes.map(this.getNotes)}
-					</div>
+					{notes &&
+						<div className="notes">
+							<h3>Notes</h3>
+							{notes.map(this.getNotes)}
+						</div>
+					}
 				</div>
 			</div>
 		);

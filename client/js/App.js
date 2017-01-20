@@ -54,17 +54,18 @@ class App extends Component{
 	handleContactRoute({...props}) {
 		const contacts = storage.get('contacts');
 		const contact = _.find(contacts, {uid: props.params.uid});
+		Object.assign({}, contact);
+
 		return(
 			<Profile
-				name={`${contact.name.first} ${contact.name.last}` || null}
-				job_title={contact.name.job_title || null}
-				email={contact.email || null}
-				phone={contact.phone || null}
-				avatar_url={contact.avatar || null}
-				address={contact.address || {}}
-				company={contact.company || {}}
-				notes={contact.notes || []}
-				{...props}
+				name={`${contact.name.first} ${contact.name.last}`}
+				job_title={contact.job_title}
+				email={contact.email}
+				phone={contact.phone}
+				avatar_url={contact.avatar}
+				address={contact.address}
+				company={contact.company}
+				notes={contact.notes}
 			/>
 		);
 	}
