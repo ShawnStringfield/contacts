@@ -1,5 +1,5 @@
 import React from 'react';
-import config from '../../constants';
+import config from '../../../constants';
 
 const {
 	MAPBOX_AUTH_TOKEN,

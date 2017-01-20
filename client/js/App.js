@@ -5,7 +5,7 @@ import _ from 'lodash';
 import storage from './helpers/storage';
 import contacts_api from './resources/contacts';
 import Contacts from './components/Contacts';
-import Profile from './components/ContactProfile';
+import Profile from './components/person/ContactProfile';
 import '../sass/styles.scss';
 
 
