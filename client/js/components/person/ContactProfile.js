@@ -75,7 +75,7 @@ class ContactProfile extends React.Component{
 					{phone &&
 						<div className="group">
 							<div className="label">Work</div>
-							<div className="phone">{phone}</div>
+							<div className="phone">{JSON.stringify(phone, null, 4)}</div>
 						</div>
 					}
 
@@ -113,7 +113,7 @@ class ContactProfile extends React.Component{
 ContactProfile.propTypes = {
 	name: React.PropTypes.string,
 	email: React.PropTypes.string,
-	phone: React.PropTypes.string,
+	phone: React.PropTypes.object,
 	job_title: React.PropTypes.string,
 	avatar_url: React.PropTypes.string,
 	address: React.PropTypes.object,

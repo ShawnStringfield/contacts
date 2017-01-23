@@ -14,13 +14,14 @@ class App extends Component{
 
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			contacts: []
 		};
 
 		this.handleContactListRoute = this.handleContactListRoute.bind(this);
 		this.handleContactRoute = this.handleContactRoute.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+		this.onSub = this.onSubmit.bind(this);
 	}
 
 	componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component{
 		const person = {
 			email: contact.email,
 			uid: Number(last_contact.uid) + 1 + '',
+			phone: contact.phones,
 			name: {
 				first: contact.first_name,
 				last: contact.last_name
@@ -75,7 +77,7 @@ class App extends Component{
 			<Router>
 				<div>
 					<Match exactly pattern="/" render={this.handleContactListRoute}/>
-					<Match pattern="/new-contact" render={() => <PersonForm onSubmit={this.onSubmit}/>}/>
+					<Match pattern="/new-contact" render={() => <PersonForm onSub={this.onSub}/>}/>
 					<Match pattern="/contact/:uid" render={this.handleContactRoute}/>
 				</div>
 			</Router>

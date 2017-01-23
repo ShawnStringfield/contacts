@@ -5,3 +5,19 @@
 		margin-right:20px
 	}
 }
+
+.input-with-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+
+	.label {
+		padding: 0 0 11px;
+		width: 75px;
+	}
+
+	input {
+		margin-bottom: 0;
+	}
+}
