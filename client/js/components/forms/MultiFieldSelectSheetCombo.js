@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import InputWithSelect from '../forms/InputWithSelect';
+import InputWithSelectSheet from '../forms/InputWithSelectSheet';
 
-class AddInputs extends Component{
+class MultiFieldSelectSheetCombo extends Component{
 
 	constructor(props) {
 		super(props);
@@ -11,36 +11,25 @@ class AddInputs extends Component{
 		};
 	}
 
-	// onPhoneChange(evt, props) {
-	// 	const key = evt.target.name;
-	// 	const value = evt.target.value;
-	// 	console.log( props );
-	// 	console.log( key );
-	// 	console.log( value );
-	// 	// props.handlePhoneItem(key, value);
-	// }
+	componentWillReceiveProps() {
+		console.log( this.props );
+	}
 
 	handleSelectOptions(props) {
-		console.log( props );
 		props.handleOverlay();
 		// props.handleSelectOptions(item, key);
 	}
 
-	showPickList(props) {
-		props.handleOverlay();
-	}
-
 	getFormField(props, key) {
 		return (
-			<InputWithSelect
+			<InputWithSelectSheet
 				key={key}
 				id={key}
 				type={this.props.type}
-				onClick={this.showPickList}
-				onChange={props.handlePhoneItem}
-				{...props}
+				onClick={props.onClick}
+				onChange={props.onChange}
 			/>
-		)
+		);
 	}
 
 	createNewInput(props) {
@@ -52,7 +41,7 @@ class AddInputs extends Component{
 			addressess: [...prevState.addressess, field]
 		}));
 
-		props.handleFormItem(key);
+		props.setupFieldCreation(key);
 	}
 
 	renderNewInput() {
@@ -64,12 +53,11 @@ class AddInputs extends Component{
 	render(){
 		return(
 			<div>
-				{/* {this.renderSelect(this.props)} */}
 				{this.renderNewInput(this.props)}
 				<button
 					type="button"
 					className="add"
-					onClick={this.createNewInput.bind(this, this.props)}>
+					onClick={() => this.createNewInput(this.props)}>
 					+ Add Phone
 				</button>
 			</div>
@@ -77,8 +65,9 @@ class AddInputs extends Component{
 	}
 }
 
-AddInputs.propTypes = {
-	showOptions: React.PropTypes.bool
+MultiFieldSelectSheetCombo.propTypes = {
+	showOptions: React.PropTypes.bool,
+	type: React.PropTypes.string
 };
 
-export default AddInputs;
+export default MultiFieldSelectSheetCombo;

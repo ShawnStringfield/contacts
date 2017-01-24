@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import AddInputs from '../forms/AddInputs';
+import MultiFieldSelectSheetCombo from '../forms/MultiFieldSelectSheetCombo';
 import Overlay from '../common/Overlay';
 
 class PersonForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showOptions: false,
+			showOverlay: false,
 			person: {
 				phones: {}
 			},
@@ -14,10 +14,15 @@ class PersonForm extends Component {
 
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
+		this.handleSelectOption = this.handleSelectOption.bind(this);
+		this.setupFieldCreation = this.setupFieldCreation.bind(this);
+		this.handleNewFieldInput = this.handleNewFieldInput.bind(this);
 		this.handleOverlay = this.handleOverlay.bind(this);
-		this.handleSelectOptions = this.handleSelectOptions.bind(this);
-		this.handleFormItem = this.handleFormItem.bind(this);
-		this.handlePhoneItem = this.handlePhoneItem.bind(this);
+
+		this.overlayOptions = {
+			state: this.state.showOverlay,
+			action: this.handleOverlay
+		};
 	}
 
 	onSubmit(evt) {
@@ -31,26 +36,30 @@ class PersonForm extends Component {
 		this.setState({person});
 	}
 
-	handleSelectOptions(item, key) {
-		const person = this.state.person;
-		person.phones[key]['type'] = item;
+	handleOverlay() {
+		this.setState({
+			showOverlay: !this.state.showOverlay
+		});
 	}
 
-	handlePhoneItem(evt, item) {
+	handleSelectOption(key, item) {
 		const person = this.state.person;
-		const key = item.name;
-		const value = evt.target.value;
-		person.phones[key]['value'] = value;
+		person.phones[key]['type'] = item;
 		console.log( person );
 	}
 
-	handleFormItem(key) {
+	handleNewFieldInput(evt) {
+		const key = evt.target.name;
+		const value = evt.target.value;
 		const person = this.state.person;
-		person.phones[key] = {};
+		person.phones[key]['value'] = value;
+		/* eslint-disable no-console */
+		console.log( person );
 	}
 
-	handleOverlay() {
-		this.setState({showOptions: !this.state.showOptions});
+	setupFieldCreation(key) {
+		const person = this.state.person;
+		person.phones[key] = {};
 	}
 
 	render() {
@@ -93,13 +102,11 @@ class PersonForm extends Component {
 						onChange={this.onChange}
 					/>
 
-					<AddInputs
+					<MultiFieldSelectSheetCombo
 						type="phone"
-						showOptions={this.state.showOptions}
-						handleOverlay={this.handleOverlay}
-						handleFormItem={this.handleFormItem}
-						handlePhoneItem={this.handlePhoneItem}
-						handleSelectOptions={this.handleSelectOptions}
+						setupFieldCreation={this.setupFieldCreation}
+						onClick={this.handleSelectOption}
+						onChange={this.handleNewFieldInput}
 					/>
 
 					{/* <div style={{marginTop:'20px'}}>
@@ -109,7 +116,7 @@ class PersonForm extends Component {
 
 				<Overlay
 					onClick={this.handleOverlay}
-					className={this.state.showOptions ? 'active':'inactive'}
+					className={this.state.showOverlay ? 'active':'inactive'}
 				/>
 			</div>
 		);

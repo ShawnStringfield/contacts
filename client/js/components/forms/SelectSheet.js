@@ -1,5 +1,9 @@
 import React from 'react';
 
+const propTypes = {
+	className: React.PropTypes.string
+};
+
 function renderList(props) {
 	return props.list.map((item) => {
 		return(
@@ -11,10 +15,11 @@ function renderList(props) {
 	});
 }
 
-const Select = (props) => (
-	<div className="select">
+const SelectSheet = (props) => (
+	<div className={`${props.className} select`}>
 		<ul>{renderList(props)}</ul>
 	</div>
 );
 
-export default Select;
+SelectSheet.propTypes = propTypes;
+export default SelectSheet;

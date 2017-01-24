@@ -73,6 +73,9 @@ class App extends Component{
 	}
 
 	render() {
+		/* eslint-disable no-console */
+		console.log( this.state );
+		
 		return(
 			<Router>
 				<div>

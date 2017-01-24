@@ -1,16 +1,20 @@
 import React from 'react';
 
-function onChange(props, evt) {
-	props.onChange(evt, props);
-}
+const propTypes = {
+	type: React.PropTypes.string,
+	name: React.PropTypes.string,
+	placeholder: React.PropTypes.string,
+	onChange: React.PropTypes.func
+};
 
 const Input = (props) => (
 	<input
 		type={props.type}
 		name={props.name}
 		placeholder={props.placeholder}
-		onChange={onChange.bind(this, props)}
+		onChange={(evt) => props.onChange(evt)}
 	/>
-)
+);
 
+Input.propTypes = propTypes;
 export default Input;
