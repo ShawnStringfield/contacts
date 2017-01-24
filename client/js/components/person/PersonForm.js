@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import MultiFieldSelectSheetCombo from '../forms/MultiFieldSelectSheetCombo';
-import Overlay from '../common/Overlay';
 
 class PersonForm extends Component {
 	constructor(props) {
@@ -8,16 +7,16 @@ class PersonForm extends Component {
 		this.state = {
 			showOverlay: false,
 			person: {
-				phones: {}
+				phone: {},
+				email: {},
 			},
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.handleSelectOption = this.handleSelectOption.bind(this);
+		this.setFieldType = this.setFieldType.bind(this);
 		this.setupFieldCreation = this.setupFieldCreation.bind(this);
 		this.handleNewFieldInput = this.handleNewFieldInput.bind(this);
-		this.handleOverlay = this.handleOverlay.bind(this);
 
 		this.overlayOptions = {
 			state: this.state.showOverlay,
@@ -26,8 +25,8 @@ class PersonForm extends Component {
 	}
 
 	onSubmit(evt) {
-		this.props.onSubmit(this.state.person);
 		evt.preventDefault();
+		this.props.save(this.state.person);
 	}
 
 	onChange(evt) {
@@ -36,30 +35,25 @@ class PersonForm extends Component {
 		this.setState({person});
 	}
 
-	handleOverlay() {
-		this.setState({
-			showOverlay: !this.state.showOverlay
-		});
-	}
-
-	handleSelectOption(key, item) {
+	setFieldType(args) {
 		const person = this.state.person;
-		person.phones[key]['type'] = item;
-		console.log( person );
+		const {type, id, name} = args;
+		person[type][id]['type'] = name;
 	}
 
-	handleNewFieldInput(evt) {
+	handleNewFieldInput(evt, type) {
 		const key = evt.target.name;
 		const value = evt.target.value;
 		const person = this.state.person;
-		person.phones[key]['value'] = value;
-		/* eslint-disable no-console */
-		console.log( person );
+		person[type][key]['value'] = value;
 	}
 
-	setupFieldCreation(key) {
+	setupFieldCreation(field) {
+		console.log( field );
 		const person = this.state.person;
-		person.phones[key] = {};
+		const type = field.type;
+		const key = field.key;
+		person[type][key] = {};
 	}
 
 	render() {
@@ -105,19 +99,14 @@ class PersonForm extends Component {
 					<MultiFieldSelectSheetCombo
 						type="phone"
 						setupFieldCreation={this.setupFieldCreation}
-						onClick={this.handleSelectOption}
+						onClick={this.setFieldType}
 						onChange={this.handleNewFieldInput}
 					/>
 
-					{/* <div style={{marginTop:'20px'}}>
+					<div style={{marginTop:'20px'}}>
 						<button type="submit" className="btn">Done</button>
-					</div> */}
+					</div>
 				</form>
-
-				<Overlay
-					onClick={this.handleOverlay}
-					className={this.state.showOverlay ? 'active':'inactive'}
-				/>
 			</div>
 		);
 	}

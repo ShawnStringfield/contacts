@@ -21,7 +21,7 @@ class App extends Component{
 
 		this.handleContactListRoute = this.handleContactListRoute.bind(this);
 		this.handleContactRoute = this.handleContactRoute.bind(this);
-		this.onSub = this.onSubmit.bind(this);
+		this.save = this.save.bind(this);
 	}
 
 	componentDidMount() {
@@ -31,13 +31,14 @@ class App extends Component{
 		this.setState({contacts: storage.get('contacts')});
 	}
 
-	onSubmit(contact) {
+	save(contact) {
+		console.log( contact );
 		const last_contact = _.last(this.state.contacts);
 
 		const person = {
 			email: contact.email,
 			uid: Number(last_contact.uid) + 1 + '',
-			phone: contact.phones,
+			phone: contact.phone,
 			name: {
 				first: contact.first_name,
 				last: contact.last_name
@@ -45,7 +46,7 @@ class App extends Component{
 		};
 
 		const contacts = [...this.state.contacts, person];
-		storage.set('contacts', contacts);
+		// storage.set('contacts', contacts);
 		this.setState({contacts});
 	}
 
@@ -75,12 +76,12 @@ class App extends Component{
 	render() {
 		/* eslint-disable no-console */
 		console.log( this.state );
-		
+
 		return(
 			<Router>
 				<div>
 					<Match exactly pattern="/" render={this.handleContactListRoute}/>
-					<Match pattern="/new-contact" render={() => <PersonForm onSub={this.onSub}/>}/>
+					<Match pattern="/new-contact" render={() => <PersonForm save={this.save}/>}/>
 					<Match pattern="/contact/:uid" render={this.handleContactRoute}/>
 				</div>
 			</Router>

@@ -11,15 +11,6 @@ class MultiFieldSelectSheetCombo extends Component{
 		};
 	}
 
-	componentWillReceiveProps() {
-		console.log( this.props );
-	}
-
-	handleSelectOptions(props) {
-		props.handleOverlay();
-		// props.handleSelectOptions(item, key);
-	}
-
 	getFormField(props, key) {
 		return (
 			<InputWithSelectSheet
@@ -34,19 +25,19 @@ class MultiFieldSelectSheetCombo extends Component{
 
 	createNewInput(props) {
 		let count = this.state.addressess.length + 1;
-		let key = `phone-${count}`;
+		let key = `${props.type}-${count}`;
 		const field = this.getFormField(props, key);
 
 		this.setState((prevState) => ({
 			addressess: [...prevState.addressess, field]
 		}));
 
-		props.setupFieldCreation(key);
+		props.setupFieldCreation({key:key, type:props.type});
 	}
 
 	renderNewInput() {
 		return this.state.addressess.map((address) => {
-			return <label key={address.key} htmlFor="Phone">{address}</label>;
+			return <div key={address.key}>{address}</div>
 		});
 	}
 
@@ -58,7 +49,7 @@ class MultiFieldSelectSheetCombo extends Component{
 					type="button"
 					className="add"
 					onClick={() => this.createNewInput(this.props)}>
-					+ Add Phone
+					+ Add {this.props.type}
 				</button>
 			</div>
 		);

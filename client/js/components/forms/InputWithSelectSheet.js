@@ -23,9 +23,15 @@ class InputWithSelectSheet extends Component {
 		this.toggleSelectOptions = this.toggleSelectOptions.bind(this);
 	}
 
-	handleListOptions(item) {
-		this.setState({inputType: item});
-		this.props.onClick(this.props.id, item);
+	handleListOptions(name) {
+		const args = {
+			id: this.props.id,
+			type: this.props.type,
+			name: name
+		};
+
+		this.setState({inputType: name});
+		this.props.onClick(args);
 		this.toggleSelectOptions();
 	}
 
@@ -44,8 +50,9 @@ class InputWithSelectSheet extends Component {
 				</span>
 				<Input
 					type="text"
+					fieldType={this.props.type}
 					name={this.props.id}
-					placeholder="Phone"
+					placeholder={this.props.type}
 					onChange={this.props.onChange}
 				/>
 				<SelectSheet
