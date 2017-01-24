@@ -8,7 +8,7 @@ class PersonForm extends Component {
 			showOverlay: false,
 			person: {
 				phone: {},
-				email: {},
+				email: {}
 			},
 		};
 
@@ -18,10 +18,7 @@ class PersonForm extends Component {
 		this.setupFieldCreation = this.setupFieldCreation.bind(this);
 		this.handleNewFieldInput = this.handleNewFieldInput.bind(this);
 
-		this.overlayOptions = {
-			state: this.state.showOverlay,
-			action: this.handleOverlay
-		};
+		this.defaultFieldValueType = 'Home';
 	}
 
 	onSubmit(evt) {
@@ -49,11 +46,11 @@ class PersonForm extends Component {
 	}
 
 	setupFieldCreation(field) {
-		console.log( field );
 		const person = this.state.person;
 		const type = field.type;
 		const key = field.key;
 		person[type][key] = {};
+		person[type][key]['type'] = this.defaultFieldValueType;
 	}
 
 	render() {
@@ -98,6 +95,13 @@ class PersonForm extends Component {
 
 					<MultiFieldSelectSheetCombo
 						type="phone"
+						setupFieldCreation={this.setupFieldCreation}
+						onClick={this.setFieldType}
+						onChange={this.handleNewFieldInput}
+					/>
+
+					<MultiFieldSelectSheetCombo
+						type="email"
 						setupFieldCreation={this.setupFieldCreation}
 						onClick={this.setFieldType}
 						onChange={this.handleNewFieldInput}

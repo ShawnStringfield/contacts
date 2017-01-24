@@ -1,15 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router';
 
 import Map from './Map';
 import Avatar from './Avatar';
 
-class ContactProfile extends React.Component{
-
-	static propTypes = {
-		contact: React.PropTypes.object,
-		params: React.PropTypes.object
-	}
+class ContactProfile extends Component{
 
 	constructor(props) {
 		super(props);
@@ -112,13 +107,15 @@ class ContactProfile extends React.Component{
 
 ContactProfile.propTypes = {
 	name: React.PropTypes.string,
-	email: React.PropTypes.string,
+	email: React.PropTypes.object,
 	phone: React.PropTypes.object,
 	job_title: React.PropTypes.string,
 	avatar_url: React.PropTypes.string,
 	address: React.PropTypes.object,
 	company: React.PropTypes.object,
-	notes: React.PropTypes.array
+	notes: React.PropTypes.array,
+	contact: React.PropTypes.object,
+	params: React.PropTypes.object
 };
 
 export default ContactProfile;

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import InputWithSelectSheet from '../forms/InputWithSelectSheet';
+import MultiFieldsList from '../forms/MultiFieldsList';
+import Button from '../buttons/Button';
 
 class MultiFieldSelectSheetCombo extends Component{
 
@@ -7,7 +9,7 @@ class MultiFieldSelectSheetCombo extends Component{
 		super(props);
 
 		this.state = {
-			addressess: []
+			fields: []
 		};
 	}
 
@@ -24,33 +26,27 @@ class MultiFieldSelectSheetCombo extends Component{
 	}
 
 	createNewInput(props) {
-		let count = this.state.addressess.length + 1;
+		let count = this.state.fields.length + 1;
 		let key = `${props.type}-${count}`;
 		const field = this.getFormField(props, key);
 
 		this.setState((prevState) => ({
-			addressess: [...prevState.addressess, field]
+			fields: [...prevState.fields, field]
 		}));
 
 		props.setupFieldCreation({key:key, type:props.type});
 	}
 
-	renderNewInput() {
-		return this.state.addressess.map((address) => {
-			return <div key={address.key}>{address}</div>
-		});
-	}
-
 	render(){
 		return(
 			<div>
-				{this.renderNewInput(this.props)}
-				<button
+				<MultiFieldsList fields={this.state.fields} />
+				<Button
 					type="button"
 					className="add"
-					onClick={() => this.createNewInput(this.props)}>
-					+ Add {this.props.type}
-				</button>
+					buttonText={`+ Add ${this.props.type}`}
+					onClick={this.createNewInput.bind(this, this.props)}
+				/>
 			</div>
 		);
 	}

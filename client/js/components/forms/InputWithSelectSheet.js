@@ -14,6 +14,7 @@ class InputWithSelectSheet extends Component {
 
 	constructor(props) {
 		super(props);
+		
 		this.state = {
 			showSelectOptions: false,
 			inputType: null
@@ -44,7 +45,6 @@ class InputWithSelectSheet extends Component {
 	render() {
 		return(
 			<label htmlFor={this.props.type}>
-				{this.props.state}
 				<span className="label" onClick={this.toggleSelectOptions}>
 					{this.state.inputType || 'Home'}
 				</span>
