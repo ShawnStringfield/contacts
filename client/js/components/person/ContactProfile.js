@@ -107,8 +107,8 @@ class ContactProfile extends Component{
 
 ContactProfile.propTypes = {
 	name: React.PropTypes.string,
-	email: React.PropTypes.object,
-	phone: React.PropTypes.object,
+	email: React.PropTypes.string,
+	phone: React.PropTypes.string,
 	job_title: React.PropTypes.string,
 	avatar_url: React.PropTypes.string,
 	address: React.PropTypes.object,

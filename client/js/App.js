@@ -25,10 +25,12 @@ class App extends Component{
 	}
 
 	componentDidMount() {
-		if (!storage.get('contacts')) {
+		const localContacts = storage.get('contacts');
+		if (!localContacts) {
 			storage.set('contacts', contacts_api);
 		}
-		this.setState({contacts: storage.get('contacts')});
+
+		this.setState({contacts: localContacts});
 	}
 
 	save(contact) {
@@ -36,9 +38,9 @@ class App extends Component{
 		const last_contact = _.last(this.state.contacts);
 
 		const person = {
-			email: contact.email,
 			uid: Number(last_contact.uid) + 1 + '',
 			phone: contact.phone,
+			email: contact.email,
 			name: {
 				first: contact.first_name,
 				last: contact.last_name
@@ -75,7 +77,7 @@ class App extends Component{
 
 	render() {
 		/* eslint-disable no-console */
-		console.log( this.state );
+		console.table( this.state.contacts );
 
 		return(
 			<Router>

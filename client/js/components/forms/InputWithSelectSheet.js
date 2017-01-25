@@ -14,7 +14,7 @@ class InputWithSelectSheet extends Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		this.state = {
 			showSelectOptions: false,
 			inputType: null
@@ -32,8 +32,8 @@ class InputWithSelectSheet extends Component {
 		};
 
 		this.setState({inputType: name});
-		this.props.onClick(args);
 		this.toggleSelectOptions();
+		this.props.onClick(args);
 	}
 
 	toggleSelectOptions() {

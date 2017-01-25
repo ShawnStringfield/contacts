@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import MultiFieldSelectSheetCombo from '../forms/MultiFieldSelectSheetCombo';
 
+const propTypes = {
+	onSubmit: React.PropTypes.func,
+	save: React.PropTypes.func
+};
+
 class PersonForm extends Component {
 	constructor(props) {
 		super(props);
@@ -36,13 +41,15 @@ class PersonForm extends Component {
 		const person = this.state.person;
 		const {type, id, name} = args;
 		person[type][id]['type'] = name;
+		console.table( {args} );
 	}
 
-	handleNewFieldInput(evt, type) {
+	handleNewFieldInput(evt, field_type) {
 		const key = evt.target.name;
 		const value = evt.target.value;
 		const person = this.state.person;
-		person[type][key]['value'] = value;
+		person[field_type][key]['value'] = value;
+		console.table( person[field_type] );
 	}
 
 	setupFieldCreation(field) {
@@ -51,6 +58,7 @@ class PersonForm extends Component {
 		const key = field.key;
 		person[type][key] = {};
 		person[type][key]['type'] = this.defaultFieldValueType;
+		console.table( {field} );
 	}
 
 	render() {
@@ -59,29 +67,19 @@ class PersonForm extends Component {
 			<div className="form container">
 				<h2>New Contact</h2>
 				<form onSubmit={this.onSubmit}>
-					<div className="form-group">
-						<input
-							type="text"
-							name="first_name"
-							value={person.first}
-							placeholder="First Name"
-							onChange={this.onChange}
-						/>
-
-						<input
-							type="text"
-							name="last_name"
-							value={person.last}
-							placeholder="Last Name"
-							onChange={this.onChange}
-						/>
-					</div>
+					<input
+						type="text"
+						name="first_name"
+						value={person.first}
+						placeholder="First Name"
+						onChange={this.onChange}
+					/>
 
 					<input
 						type="text"
-						name="email"
-						value={person.email}
-						placeholder="Email"
+						name="last_name"
+						value={person.last}
+						placeholder="Last Name"
 						onChange={this.onChange}
 					/>
 
@@ -107,17 +105,13 @@ class PersonForm extends Component {
 						onChange={this.handleNewFieldInput}
 					/>
 
-					<div style={{marginTop:'20px'}}>
-						<button type="submit" className="btn">Done</button>
-					</div>
+					<button type="submit" className="btn">Done</button>
 				</form>
 			</div>
 		);
 	}
 }
 
-PersonForm.propTypes = {
-	onSubmit: React.PropTypes.func
-};
+PersonForm.propTypes = propTypes;
 
 export default PersonForm;

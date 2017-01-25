@@ -8,7 +8,7 @@ const getFullName = function(name) {
 class Contacts extends Component{
 
 	static propTypes = {
-			contacts: React.PropTypes.array
+		contacts: React.PropTypes.array
 	}
 
 	constructor(props) {

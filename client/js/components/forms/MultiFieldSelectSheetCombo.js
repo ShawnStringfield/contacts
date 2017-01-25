@@ -3,6 +3,12 @@ import InputWithSelectSheet from '../forms/InputWithSelectSheet';
 import MultiFieldsList from '../forms/MultiFieldsList';
 import Button from '../buttons/Button';
 
+const propTypes = {
+	showOptions: React.PropTypes.bool,
+	type: React.PropTypes.string,
+	fields: React.PropTypes.array
+};
+
 class MultiFieldSelectSheetCombo extends Component{
 
 	constructor(props) {
@@ -52,9 +58,5 @@ class MultiFieldSelectSheetCombo extends Component{
 	}
 }
 
-MultiFieldSelectSheetCombo.propTypes = {
-	showOptions: React.PropTypes.bool,
-	type: React.PropTypes.string
-};
-
+MultiFieldSelectSheetCombo.propTypes = propTypes;
 export default MultiFieldSelectSheetCombo;

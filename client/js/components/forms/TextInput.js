@@ -3,6 +3,7 @@ import React from 'react';
 const propTypes = {
 	type: React.PropTypes.string,
 	name: React.PropTypes.string,
+	fieldType: React.PropTypes.string,
 	placeholder: React.PropTypes.string,
 	onChange: React.PropTypes.func
 };
